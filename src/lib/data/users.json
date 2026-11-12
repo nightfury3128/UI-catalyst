@@ -1,0 +1,38 @@
+{
+	"users": [
+		{
+			"id": "arthur",
+			"username": "arthur",
+			"password": "bearcat",
+			"name": "Arthur Morgan",
+			"initials": "AM",
+			"studentId": "DEMO-CS-2027-001",
+			"major": "Computer Science · B.S.",
+			"college": "Class of 2027 Section I",
+			"catalogYear": 2022,
+			"year": "Senior",
+			"level": "Undergraduate",
+			"standing": "Good standing",
+			"planFile": "arthur",
+			"transcriptFile": "arthur",
+			"expectedGraduation": "Spring 2027"
+		},
+		{
+			"id": "joel",
+			"username": "joel",
+			"password": "bearcat",
+			"name": "Joel Miller",
+			"initials": "JM",
+			"studentId": "DEMO-CS-2030-012",
+			"major": "Computer Science · B.S.",
+			"college": "Class of 2030 Section I",
+			"catalogYear": 2026,
+			"year": "Freshman",
+			"level": "Undergraduate",
+			"standing": "Good standing",
+			"planFile": "joel",
+			"transcriptFile": "joel",
+			"expectedGraduation": "Spring 2030"
+		}
+	]
+}

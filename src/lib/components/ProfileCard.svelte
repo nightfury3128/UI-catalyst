@@ -1,5 +1,12 @@
 <script>
-	import { student } from '#lib/data/student.js';
+	import { student } from '#lib/data/student.svelte.js';
+	import { CURRENT_TERM_ID, enrollment } from '#lib/stores/enrollment.svelte.js';
+
+	const enrolledCredits = $derived(
+		(enrollment.enrolledByTerm[CURRENT_TERM_ID] ?? []).reduce((sum, c) => sum + c.credits, 0)
+	);
+
+	const enrollmentStatus = $derived(enrolledCredits >= 12 ? 'Full-time' : 'Part-time');
 </script>
 
 <section class="card">
@@ -11,17 +18,19 @@
 
 	<div class="tags">
 		<span>{student.year}</span>
-		<span>{student.enrollment}</span>
+		<span>{enrollmentStatus}</span>
 		<span class="ok">{student.standing}</span>
 	</div>
 
 	<ul>
-		<li><span>GPA</span><strong>{student.gpa}</strong></li>
+		<li><span>GPA</span><strong>{student.gpa ?? '—'}</strong></li>
 		<li><span>Earned credits</span><strong>{student.earnedCredits}</strong></li>
-		<li><span>Enrolled credits</span><strong>{student.enrolledCredits}</strong></li>
+		<li><span>Enrolled credits</span><strong>{enrolledCredits}</strong></li>
 	</ul>
 
-	<a href="#profile">View my profile</a>
+	<button type="button" class="profile-btn" disabled title="Coming soon">
+		View my profile <span>Coming soon</span>
+	</button>
 </section>
 
 <style>
@@ -92,11 +101,24 @@
 		font-size: 14px;
 	}
 
-	a {
+	.profile-btn {
 		display: block;
+		width: 100%;
 		text-align: center;
 		background: var(--sidebar);
 		color: white;
 		padding: 10px;
+		border: 0;
+		opacity: 0.55;
+		cursor: not-allowed;
+	}
+
+	.profile-btn span {
+		display: block;
+		font-size: 10px;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		opacity: 0.85;
+		margin-top: 2px;
 	}
 </style>

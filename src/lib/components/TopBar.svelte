@@ -1,6 +1,12 @@
 <script>
 	import { theme, toggleTheme } from '#lib/theme.js';
-	import { student } from '#lib/data/student.js';
+	import { student } from '#lib/data/student.svelte.js';
+	import { auth, logout } from '#lib/stores/user.svelte.js';
+
+	function handleLogout() {
+		logout();
+		window.location.href = '/login';
+	}
 </script>
 
 <header class="topbar">
@@ -12,6 +18,9 @@
 		<button type="button" onclick={toggleTheme}>
 			{$theme === 'light' ? 'Dark mode' : 'Light mode'}
 		</button>
+		{#if auth.username}
+			<button type="button" class="signout" onclick={handleLogout}>Sign out</button>
+		{/if}
 	</div>
 </header>
 
@@ -44,6 +53,18 @@
 		color: var(--text);
 		padding: 6px 10px;
 		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	.signout {
+		background: var(--sidebar);
+		color: #fff;
+		border-color: var(--sidebar);
+	}
+
+	.signout:hover {
+		background: var(--sidebar-hover);
+		border-color: var(--sidebar-hover);
 	}
 
 	@media (max-width: 700px) {

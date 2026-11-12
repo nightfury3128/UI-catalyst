@@ -1,5 +1,11 @@
 <script>
 	import { page } from '$app/state';
+	import { auth, logout } from '#lib/stores/user.svelte.js';
+
+	function handleLogout() {
+		logout();
+		window.location.href = '/login';
+	}
 </script>
 
 <aside class="sidebar">
@@ -10,11 +16,18 @@
 
 	<nav>
 		<a href="/" class:active={page.url.pathname === '/'}>Home</a>
+		<a href="/classes" class:active={page.url.pathname === '/classes'}>Classes &amp; schedule</a>
+		<a href="/progress" class:active={page.url.pathname === '/progress'}>Academic progress</a>
 	</nav>
 
 	<div class="foot">
 		<p>Need help? Talk to your advisor.</p>
 		<a href="https://uc.inspire.civitaslearning.com/login">My Bearcat Network</a>
+		{#if auth.username}
+			<button type="button" class="logout" onclick={handleLogout}>
+				Sign out ({auth.username})
+			</button>
+		{/if}
 	</div>
 </aside>
 
@@ -78,6 +91,24 @@
 
 	.foot a {
 		text-decoration: underline;
+	}
+
+	.logout {
+		display: block;
+		width: 100%;
+		margin-top: 10px;
+		background: transparent;
+		color: var(--sidebar-text);
+		border: 1px solid var(--sidebar-muted);
+		padding: 8px 10px;
+		font: inherit;
+		font-size: 12px;
+		cursor: pointer;
+	}
+
+	.logout:hover {
+		background: var(--sidebar-hover);
+		border-color: var(--sidebar-text);
 	}
 
 	@media (max-width: 800px) {

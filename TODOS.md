@@ -27,8 +27,8 @@ Source: [Catalyst Figma redesign](https://www.figma.com/design/QmzVctFez8wJ2DL9r
 | --- | --- | --- | --- |
 | Student home: List view | `3:2` | `/` | Built |
 | Student home: Calendar view | `5:8` | `/` | Not started |
-| Academic progress | `3:84` | `/progress` | Not started |
-| Classes & schedule | `3:43` | `/classes` | Not started |
+| Academic progress | `3:84` | `/progress` | Built |
+| Classes & schedule | `3:43` | `/classes` | Built |
 | Academic services | `3:125` | `/services` | Not started |
 
 ## Next work

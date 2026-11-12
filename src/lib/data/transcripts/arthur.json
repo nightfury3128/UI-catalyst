@@ -1,0 +1,55 @@
+{
+	"schemaVersion": "1.0",
+	"studentId": "DEMO-CS-2027-001",
+	"catalogYear": 2022,
+	"entries": [
+		{ "code": "CS1100", "credits": 1, "term": "fall-2022", "grade": "A" },
+		{ "code": "ENED1100", "credits": 3, "term": "fall-2022", "grade": "B+" },
+		{ "code": "ENGL1001", "credits": 3, "term": "fall-2022", "grade": "A-" },
+		{ "code": "MATH1061", "credits": 4, "term": "fall-2022", "grade": "B" },
+		{ "code": "PHYS2001", "credits": 4, "term": "fall-2022", "grade": "B" },
+		{ "code": "PHYS2001L", "credits": 1, "term": "fall-2022", "grade": "B+" },
+
+		{ "code": "CHEM1040", "credits": 4, "term": "spring-2023", "grade": "B-" },
+		{ "code": "CHEM1040L", "credits": 1, "term": "spring-2023", "grade": "B" },
+		{ "code": "CS1021C", "credits": 4, "term": "spring-2023", "grade": "B+" },
+		{ "code": "ENED1120", "credits": 3, "term": "spring-2023", "grade": "B" },
+		{ "code": "MATH1062", "credits": 4, "term": "spring-2023", "grade": "B-" },
+		{ "code": "PD1011", "credits": 1, "term": "spring-2023", "grade": "A" },
+
+		{ "code": "COOP2011", "credits": 0, "term": "fall-2023", "grade": "S" },
+
+		{ "code": "CS2011", "credits": 3, "term": "spring-2024", "grade": "B+" },
+		{ "code": "CS2023", "credits": 3, "term": "spring-2024", "grade": "A-" },
+		{ "code": "CS2028C", "credits": 4, "term": "spring-2024", "grade": "B" },
+		{ "code": "IT2030C", "credits": 3, "term": "spring-2024", "grade": "A-" },
+		{ "code": "MATH2076", "credits": 3, "term": "spring-2024", "grade": "C+" },
+
+		{ "code": "COOP2012", "credits": 0, "term": "summer-2024", "grade": "S" },
+
+		{ "code": "CS2071", "credits": 3, "term": "fall-2024", "grade": "B" },
+		{ "code": "CS3003", "credits": 3, "term": "fall-2024", "grade": "B+" },
+		{ "code": "ENGL2089", "credits": 3, "term": "fall-2024", "grade": "B+" },
+		{ "code": "PD2050", "credits": 1, "term": "fall-2024", "grade": "A" },
+		{ "code": "STAT2037", "credits": 3, "term": "fall-2024", "grade": "B" },
+		{ "code": "HIST1001", "credits": 3, "term": "fall-2024", "grade": "A-" },
+
+		{ "code": "COOP3011", "credits": 0, "term": "spring-2025", "grade": "S" },
+
+		{ "code": "COMM1071", "credits": 3, "term": "summer-2025", "grade": "B+" },
+		{ "code": "CS4071", "credits": 3, "term": "summer-2025", "grade": "B+" },
+		{ "code": "CS4092", "credits": 3, "term": "summer-2025", "grade": "B" },
+		{ "code": "EECE3093C", "credits": 4, "term": "summer-2025", "grade": "B" },
+		{ "code": "PSYC1001", "credits": 3, "term": "summer-2025", "grade": "A-" },
+
+		{ "code": "COOP4011", "credits": 0, "term": "fall-2025", "grade": "S" },
+
+		{ "code": "CS4033", "credits": 3, "term": "spring-2026", "grade": "B+" },
+		{ "code": "CS4065", "credits": 3, "term": "spring-2026", "grade": "B" },
+		{ "code": "EECE4029", "credits": 3, "term": "spring-2026", "grade": "B+" },
+		{ "code": "ENGL4092", "credits": 3, "term": "spring-2026", "grade": "A-" },
+		{ "code": "PHIL1001", "credits": 3, "term": "spring-2026", "grade": "B+" },
+
+		{ "code": "COOP4012", "credits": 0, "term": "summer-2026", "grade": "S" }
+	]
+}

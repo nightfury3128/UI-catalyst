@@ -1,0 +1,551 @@
+{
+  "schemaVersion": "1.0",
+  "isMockData": true,
+  "program": {
+    "university": "University of Cincinnati",
+    "name": "Computer Science",
+    "degree": "Bachelor of Science",
+    "code": "BSCS",
+    "catalog": "Class of 2027 Section I",
+    "durationYears": 5,
+    "minimumCredits": 126,
+    "maximumMinimumCredits": 127,
+    "sourceUrl": "https://webapps2.uc.edu/ecurriculum/DegreePrograms/Home/MajorMap/10737"
+  },
+  "student": {
+    "id": "DEMO-CS-2027-001",
+    "name": "Arthur Morgan",
+    "catalogYear": 2022,
+    "expectedGraduation": "2027-05",
+    "recordType": "synthetic-demo"
+  },
+  "terms": [
+    {
+      "id": "fall-2022",
+      "name": "Fall 2022",
+      "year": 2022,
+      "season": "Fall",
+      "courses": [
+        {
+          "code": "CS1100",
+          "title": "Introduction to Computer Science",
+          "credits": 1,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "ENED1100",
+          "title": "Foundations of Engineering Design Thinking I",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "ENGL1001",
+          "title": "English Composition",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "MATH1061",
+          "title": "Calculus I",
+          "credits": 4,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "PHYS2001",
+          "title": "Physics for Engineers I",
+          "credits": 4,
+          "fulfills": "Science elective with lab",
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "PHYS2001L",
+          "title": "Physics for Engineers I Laboratory",
+          "credits": 1,
+          "fulfills": "Science elective with lab",
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 16
+    },
+    {
+      "id": "spring-2023",
+      "name": "Spring 2023",
+      "year": 2023,
+      "season": "Spring",
+      "courses": [
+        {
+          "code": "CHEM1040",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CHEM1040L",
+          "title": "General Chemistry Laboratory I",
+          "credits": 1,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CS1021C",
+          "title": "Computer Science 1",
+          "credits": 4,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "ENED1120",
+          "title": "Foundations of Engineering Design Thinking II",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "MATH1062",
+          "title": "Calculus II",
+          "credits": 4,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "PD1011",
+          "title": "Introduction to COOP for CEAS",
+          "credits": 1,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 17
+    },
+    {
+      "id": "fall-2023",
+      "name": "Fall 2023",
+      "year": 2023,
+      "season": "Fall",
+      "courses": [
+        {
+          "code": "COOP2011",
+          "title": "Co-op for CEAS (First Semester Experience)",
+          "credits": 0,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 0
+    },
+    {
+      "id": "spring-2024",
+      "name": "Spring 2024",
+      "year": 2024,
+      "season": "Spring",
+      "courses": [
+        {
+          "code": "CS2011",
+          "title": "Introduction to Computer Systems",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CS2023",
+          "title": "Python Programming",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CS2028C",
+          "title": "Data Structures",
+          "credits": 4,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "IT2030C",
+          "title": "Information Security and Assurance",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "MATH2076",
+          "title": "Linear Algebra",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 16
+    },
+    {
+      "id": "summer-2024",
+      "name": "Summer 2024",
+      "year": 2024,
+      "season": "Summer",
+      "courses": [
+        {
+          "code": "COOP2012",
+          "title": "Co-op for CEAS (Second Semester Experience)",
+          "credits": 0,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 0
+    },
+    {
+      "id": "fall-2024",
+      "name": "Fall 2024",
+      "year": 2024,
+      "season": "Fall",
+      "courses": [
+        {
+          "code": "CS2071",
+          "title": "Discrete Computational Structures",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CS3003",
+          "title": "Programming Languages",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "ENGL2089",
+          "title": "Intermediate Composition",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "PD2050",
+          "title": "Mid-Curricular Co-op Community for Engineering",
+          "credits": 1,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "STAT2037",
+          "title": "Probability and Statistics I",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "HIST1001",
+          "title": "Introduction to World History",
+          "credits": 3,
+          "fulfills": "General Education course",
+          "isSampleSelection": true,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 16
+    },
+    {
+      "id": "spring-2025",
+      "name": "Spring 2025",
+      "year": 2025,
+      "season": "Spring",
+      "courses": [
+        {
+          "code": "COOP3011",
+          "title": "Co-op for CEAS (Third Semester Experience)",
+          "credits": 0,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 0
+    },
+    {
+      "id": "summer-2025",
+      "name": "Summer 2025",
+      "year": 2025,
+      "season": "Summer",
+      "courses": [
+        {
+          "code": "COMM1071",
+          "title": "Introduction to Effective Speaking",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CS4071",
+          "title": "Design and Analysis of Algorithms",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CS4092",
+          "title": "Database Design and Development",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "EECE3093C",
+          "title": "Software Engineering",
+          "credits": 4,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "PSYC1001",
+          "title": "Introduction to Psychology",
+          "credits": 3,
+          "fulfills": "General Education course",
+          "isSampleSelection": true,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 16
+    },
+    {
+      "id": "fall-2025",
+      "name": "Fall 2025",
+      "year": 2025,
+      "season": "Fall",
+      "courses": [
+        {
+          "code": "COOP4011",
+          "title": "COOP for CEAS (Fourth Semester Experience)",
+          "credits": 0,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 0
+    },
+    {
+      "id": "spring-2026",
+      "name": "Spring 2026",
+      "year": 2026,
+      "season": "Spring",
+      "courses": [
+        {
+          "code": "CS4033",
+          "title": "Artificial Intelligence: Principles and Applications",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "CS4065",
+          "title": "Computer Networks and Networked Computing",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "EECE4029",
+          "title": "Operating Systems and Systems Programming",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "ENGL4092",
+          "title": "Technical and Scientific Writing",
+          "credits": 3,
+          "status": "completed",
+          "grade": null
+        },
+        {
+          "code": "PHIL1001",
+          "title": "Introduction to Philosophy",
+          "credits": 3,
+          "fulfills": "General Education course",
+          "isSampleSelection": true,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 15
+    },
+    {
+      "id": "summer-2026",
+      "name": "Summer 2026",
+      "year": 2026,
+      "season": "Summer",
+      "courses": [
+        {
+          "code": "COOP4012",
+          "title": "Co-op for CEAS (Fifth Semester Experience)",
+          "credits": 0,
+          "status": "completed",
+          "grade": null
+        }
+      ],
+      "totalCredits": 0
+    },
+    {
+      "id": "fall-2026",
+      "name": "Fall 2026",
+      "year": 2026,
+      "season": "Fall",
+      "courses": [
+        {
+          "code": "CS5001",
+          "title": "Computer Science Senior Design I",
+          "credits": 3,
+          "status": "in_progress",
+          "grade": null
+        },
+        {
+          "code": "CS5170",
+          "title": "The Theory of Formal Languages and Automata",
+          "credits": 3,
+          "status": "in_progress",
+          "grade": null
+        },
+        {
+          "code": "CS5155",
+          "title": "Cyber Defense",
+          "credits": 3,
+          "fulfills": "CS Electives",
+          "isSampleSelection": true,
+          "status": "in_progress",
+          "grade": null
+        },
+        {
+          "code": "CS5165",
+          "title": "Cloud Computing",
+          "credits": 3,
+          "fulfills": "CS Electives",
+          "isSampleSelection": true,
+          "status": "in_progress",
+          "grade": null
+        },
+        {
+          "code": "ECON1001",
+          "title": "Introduction to Economics",
+          "credits": 3,
+          "fulfills": "General Elective",
+          "isSampleSelection": true,
+          "status": "in_progress",
+          "grade": null
+        }
+      ],
+      "totalCredits": 15
+    },
+    {
+      "id": "spring-2027",
+      "name": "Spring 2027",
+      "year": 2027,
+      "season": "Spring",
+      "courses": [
+        {
+          "code": "CS5002",
+          "title": "Computer Science Senior Design II",
+          "credits": 3,
+          "status": "planned",
+          "grade": null
+        },
+        {
+          "code": "CS5167",
+          "title": "User Interface Design",
+          "credits": 3,
+          "fulfills": "CS Electives",
+          "isSampleSelection": true,
+          "status": "planned",
+          "grade": null
+        },
+        {
+          "code": "CS5124",
+          "title": "Visual Interfaces",
+          "credits": 3,
+          "fulfills": "CS Electives",
+          "isSampleSelection": true,
+          "status": "planned",
+          "grade": null
+        },
+        {
+          "code": "CS5180",
+          "title": "Advanced Topics in Machine Learning",
+          "credits": 3,
+          "fulfills": "CS Electives",
+          "isSampleSelection": true,
+          "isIllustrativeCourse": true,
+          "status": "planned",
+          "grade": null
+        },
+        {
+          "code": "MUSC1001",
+          "title": "Music Appreciation",
+          "credits": 3,
+          "fulfills": "General Elective",
+          "isSampleSelection": true,
+          "status": "planned",
+          "grade": null
+        }
+      ],
+      "totalCredits": 15
+    }
+  ],
+  "additionalGeneralEducationRequirements": [
+    {
+      "id": "sce",
+      "description": "One course with SCE Breadth of Knowledge designation",
+      "credits": 3,
+      "sampleCourse": {
+        "code": "SOCI1001",
+        "title": "Introduction to Sociology",
+        "credits": 3,
+        "isSampleSelection": true
+      },
+      "validationRequired": true
+    },
+    {
+      "id": "additional-gen-ed",
+      "description": "One course in FA, HP, HU, SS, or SCE",
+      "credits": 3,
+      "sampleCourse": {
+        "code": "ART1001",
+        "title": "Introduction to Art",
+        "credits": 3,
+        "isSampleSelection": true
+      },
+      "validationRequired": true
+    },
+    {
+      "id": "distribution",
+      "description": "One course in FA, HP, or SS",
+      "credits": 3,
+      "sampleCourse": {
+        "code": "HIST2001",
+        "title": "Modern World History",
+        "credits": 3,
+        "isSampleSelection": true
+      },
+      "validationRequired": true
+    }
+  ],
+  "ui": {
+    "defaultTermId": "fall-2026",
+    "showCourseCodes": true,
+    "showCreditHours": true,
+    "allowTermExpansion": true,
+    "banner": "DEMO DATA \u2014 Not an official degree audit"
+  },
+  "notes": [
+    "The core term structure and non-elective requirements are based on the linked UC major map.",
+    "Elective and General Education selections are illustrative; course codes, titles, availability and eligibility must be verified before real academic use.",
+    "Additional General Education requirements are kept separate because the source lists them outside specific terms; they may overlap other general education categories and must not be automatically added to the program credit total.",
+    "No grades, GPA, or actual enrollment are asserted."
+  ]
+}

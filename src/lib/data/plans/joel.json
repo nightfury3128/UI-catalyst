@@ -1,0 +1,93 @@
+{
+	"schemaVersion": "1.0",
+	"isMockData": true,
+	"program": {
+		"university": "University of Cincinnati",
+		"name": "Computer Science",
+		"degree": "Bachelor of Science",
+		"code": "BSCS",
+		"catalog": "Class of 2030 Section I",
+		"durationYears": 4,
+		"minimumCredits": 126,
+		"maximumMinimumCredits": 127,
+		"sourceUrl": "https://webapps2.uc.edu/ecurriculum/DegreePrograms/Home/MajorMap/10737"
+	},
+	"student": {
+		"id": "DEMO-CS-2030-012",
+		"name": "Joel Miller",
+		"catalogYear": 2026,
+		"expectedGraduation": "2030-05",
+		"recordType": "synthetic-demo"
+	},
+	"terms": [
+		{
+			"id": "fall-2026",
+			"name": "Fall 2026",
+			"year": 2026,
+			"season": "Fall",
+			"courses": [
+				{ "code": "CS1100", "title": "Introduction to Computer Science", "credits": 1, "status": "in_progress", "grade": null },
+				{ "code": "CS1021C", "title": "Computer Science 1", "credits": 4, "status": "in_progress", "grade": null },
+				{ "code": "MATH1061", "title": "Calculus I", "credits": 4, "status": "in_progress", "grade": null },
+				{ "code": "ENGL1001", "title": "English Composition", "credits": 3, "status": "in_progress", "grade": null },
+				{ "code": "ENED1100", "title": "Foundations of Engineering Design Thinking I", "credits": 3, "status": "in_progress", "grade": null }
+			],
+			"totalCredits": 15
+		},
+		{
+			"id": "spring-2027",
+			"name": "Spring 2027",
+			"year": 2027,
+			"season": "Spring",
+			"courses": [
+				{ "code": "CS2011", "title": "Introduction to Computer Systems", "credits": 3, "status": "planned", "grade": null },
+				{ "code": "MATH1062", "title": "Calculus II", "credits": 4, "status": "planned", "grade": null },
+				{ "code": "ENED1120", "title": "Foundations of Engineering Design Thinking II", "credits": 3, "status": "planned", "grade": null },
+				{ "code": "CHEM1040", "title": "General Chemistry I", "credits": 4, "status": "planned", "grade": null },
+				{ "code": "PD1011", "title": "Introduction to COOP for CEAS", "credits": 1, "status": "planned", "grade": null }
+			],
+			"totalCredits": 15
+		},
+		{
+			"id": "fall-2027",
+			"name": "Fall 2027",
+			"year": 2027,
+			"season": "Fall",
+			"courses": [
+				{ "code": "CS2023", "title": "Python Programming", "credits": 3, "status": "planned", "grade": null },
+				{ "code": "CS2028C", "title": "Data Structures", "credits": 4, "status": "planned", "grade": null },
+				{ "code": "MATH2076", "title": "Linear Algebra", "credits": 3, "status": "planned", "grade": null },
+				{ "code": "PHYS2001", "title": "Physics for Engineers I", "credits": 4, "status": "planned", "grade": null },
+				{ "code": "PHYS2001L", "title": "Physics for Engineers I Laboratory", "credits": 1, "status": "planned", "grade": null }
+			],
+			"totalCredits": 15
+		}
+	],
+	"additionalGeneralEducationRequirements": [
+		{
+			"id": "sce",
+			"description": "One course with SCE Breadth of Knowledge designation",
+			"credits": 3,
+			"sampleCourse": { "code": "SOCI1001", "title": "Introduction to Sociology", "credits": 3, "isSampleSelection": true },
+			"validationRequired": true
+		},
+		{
+			"id": "additional-gen-ed",
+			"description": "One course in FA, HP, HU, SS, or SCE",
+			"credits": 3,
+			"sampleCourse": { "code": "ART1001", "title": "Introduction to Art", "credits": 3, "isSampleSelection": true },
+			"validationRequired": true
+		}
+	],
+	"ui": {
+		"defaultTermId": "fall-2026",
+		"showCourseCodes": true,
+		"showCreditHours": true,
+		"allowTermExpansion": true,
+		"banner": "DEMO DATA — Not an official degree audit"
+	},
+	"notes": [
+		"Fresh first-semester plan for Joel Miller; no credits earned yet.",
+		"Future terms are illustrative and subject to co-op scheduling."
+	]
+}
