@@ -13,7 +13,7 @@ function defaultEnrolled() {
 	return Object.fromEntries(
 		termOptions.map((/** @type {any} */ t) => [
 			t.id,
-			t.courses.map((/** @type {any} */ c) => ({ ...c }))
+			t.phase === 'future' ? [] : t.courses.map((/** @type {any} */ c) => ({ ...c }))
 		])
 	);
 }

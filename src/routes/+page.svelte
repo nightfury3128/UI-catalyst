@@ -1,8 +1,8 @@
 <script>
-	import EssentialCard from '#lib/components/EssentialCard.svelte';
+	import ComingUp from '#lib/components/ComingUp.svelte';
 	import ProfileCard from '#lib/components/ProfileCard.svelte';
 	import ScheduleList from '#lib/components/ScheduleList.svelte';
-	import { essentials, student } from '#lib/data/student.svelte.js';
+	import { student } from '#lib/data/student.svelte.js';
 
 	const firstName = student.name.split(' ')[0];
 </script>
@@ -23,18 +23,7 @@
 	<ProfileCard />
 
 	<div class="right">
-		<section class="essentials-section">
-			<div class="section-head">
-				<h2>Your student essentials</h2>
-				<p class="sub">Everything you need, one place.</p>
-			</div>
-			<div class="essentials">
-				{#each essentials as item}
-					<EssentialCard {item} />
-				{/each}
-			</div>
-		</section>
-
+		<ComingUp />
 		<ScheduleList />
 	</div>
 </div>
@@ -52,8 +41,7 @@
 		font-weight: normal;
 	}
 
-	.header p,
-	.sub {
+	.header p {
 		margin-top: 6px;
 		color: var(--muted);
 		font-size: 14px;
@@ -77,22 +65,7 @@
 	.right {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
-	}
-
-	.section-head {
-		margin-bottom: 12px;
-	}
-
-	.section-head h2 {
-		font-size: 18px;
-		font-weight: normal;
-	}
-
-	.essentials {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 12px;
+		gap: 20px;
 	}
 
 	@media (max-width: 1100px) {
@@ -103,16 +76,6 @@
 
 	@media (max-width: 1000px) {
 		.grid {
-			grid-template-columns: 1fr;
-		}
-
-		.essentials {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-	}
-
-	@media (max-width: 600px) {
-		.essentials {
 			grid-template-columns: 1fr;
 		}
 	}

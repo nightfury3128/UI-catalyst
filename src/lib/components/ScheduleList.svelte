@@ -1,9 +1,34 @@
 <script>
+	import { buildCalendar, downloadIcs } from '#lib/data/calendar.js';
 	import { CURRENT_TERM_ID, enrollment } from '#lib/stores/enrollment.svelte.js';
 
 	const schedule = $derived(enrollment.enrolledByTerm[CURRENT_TERM_ID] ?? []);
 
 	let view = $state('calendar');
+	let importOpen = $state(false);
+	let importHint = $state(/** @type {string | null} */ (null));
+
+	const termStart = new Date(2026, 7, 24); // Aug 24, 2026
+	const termEnd = new Date(2026, 11, 12); // Dec 12, 2026
+
+	function exportSchedule() {
+		if (schedule.length === 0) {
+			importHint = 'Nothing to export yet — enroll in a class first.';
+			return;
+		}
+		const ics = buildCalendar(schedule, {
+			termStart,
+			termEnd,
+			calendarName: `Catalyst — Fall 2026`
+		});
+		downloadIcs(ics, `catalyst-fall-2026.ics`);
+		importHint = 'Downloaded catalyst-fall-2026.ics — open it in Google Calendar, Apple Calendar, or Outlook.';
+	}
+
+	function toggleImport() {
+		importOpen = !importOpen;
+		if (!importOpen) importHint = null;
+	}
 
 	const dayOrder = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 	/** @type {Record<string, string>} */
@@ -17,10 +42,11 @@
 
 	const startHour = 9;
 	const totalHours = 7;
-	const rowHeight = 56;
+	const rowHeight = 64;
 	const calendarHeight = totalHours * rowHeight;
 	const hourLabels = ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM'];
 	const hourLineIndexes = Array.from({ length: totalHours + 1 }, (_, i) => i);
+	const shortBlockThreshold = 56;
 
 	const palette = [
 		{ bg: '#dce8f6', accent: '#1f4e85' },
@@ -98,8 +124,54 @@
 <section class="wrap">
 	<div class="head">
 		<h2>Your class schedule</h2>
-		<a class="manage-link" href="/classes">Manage classes →</a>
+		<div class="head-actions">
+			<button
+				type="button"
+				class="cal-btn"
+				class:is-open={importOpen}
+				aria-expanded={importOpen}
+				onclick={toggleImport}
+				title="Add your classes to Google Calendar, Apple Calendar, or Outlook"
+			>
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<rect x="3.5" y="5" width="17" height="15" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+					<path d="M3.5 9h17" stroke="currentColor" stroke-width="1.6" />
+					<path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+					<path d="M12 12v6M9 15h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+				</svg>
+				Add to calendar
+			</button>
+			<a class="manage-link" href="/classes">Manage classes →</a>
+		</div>
 	</div>
+
+	{#if importOpen}
+		<div class="import-panel" role="region" aria-label="Calendar import">
+			<div class="import-main">
+				<div>
+					<p class="import-title">Sync Fall 2026 to your calendar</p>
+					<p class="import-sub">
+						Download an .ics file with every enrolled class as a recurring weekly event — opens in
+						Google Calendar, Apple Calendar, or Outlook.
+					</p>
+				</div>
+				<button type="button" class="download-btn" onclick={exportSchedule}>
+					Download .ics ↓
+				</button>
+			</div>
+			{#if importHint}
+				<p class="import-hint">{importHint}</p>
+			{/if}
+			<details class="import-help">
+				<summary>How do I import?</summary>
+				<ul>
+					<li><strong>Google Calendar:</strong> Settings → Import &amp; export → pick the .ics file.</li>
+					<li><strong>Apple Calendar:</strong> double-click the file, then choose a calendar.</li>
+					<li><strong>Outlook:</strong> File → Open &amp; Export → Import/Export → iCalendar.</li>
+				</ul>
+			</details>
+		</div>
+	{/if}
 
 	<div class="panel">
 		<div class="toolbar">
@@ -177,6 +249,8 @@
 							{#each blocksByDay[day] as b}
 								<div
 									class="block"
+									class:short={b.height < shortBlockThreshold}
+									title={`${b.code} · ${b.time} · ${b.location}`}
 									style="top: {b.top + 2}px; height: {b.height}px; background: {b.color.bg}"
 								>
 									<span class="accent" style="background: {b.color.accent}"></span>
@@ -210,7 +284,7 @@
 	.head {
 		display: flex;
 		justify-content: space-between;
-		align-items: baseline;
+		align-items: center;
 		margin-bottom: 10px;
 		gap: 12px;
 	}
@@ -220,10 +294,143 @@
 		font-weight: normal;
 	}
 
+	.head-actions {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+
 	.manage-link {
 		font-size: 13px;
 		color: var(--text);
 		text-decoration: underline;
+	}
+
+	.cal-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 12px;
+		font: inherit;
+		font-size: 13px;
+		background: var(--surface);
+		color: var(--text);
+		border: 1px solid var(--line);
+		border-radius: 4px;
+		cursor: pointer;
+		transition:
+			background 0.18s ease,
+			border-color 0.18s ease,
+			transform 0.12s ease;
+	}
+
+	.cal-btn svg {
+		width: 15px;
+		height: 15px;
+	}
+
+	.cal-btn:hover {
+		border-color: var(--sidebar);
+		color: var(--sidebar);
+	}
+
+	.cal-btn.is-open {
+		background: var(--sidebar);
+		color: #ffffff;
+		border-color: var(--sidebar);
+	}
+
+	.import-panel {
+		background: var(--surface);
+		border: 1px solid var(--sidebar);
+		border-radius: 4px;
+		padding: 14px 16px;
+		margin-bottom: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		animation: slideDown 0.22s ease-out;
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-4px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.import-main {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 16px;
+	}
+
+	.import-title {
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	.import-sub {
+		margin-top: 2px;
+		font-size: 12.5px;
+		color: var(--muted);
+		max-width: 56ch;
+	}
+
+	.download-btn {
+		flex-shrink: 0;
+		background: var(--sidebar);
+		color: #ffffff;
+		border: 1px solid var(--sidebar);
+		padding: 8px 14px;
+		font: inherit;
+		font-size: 13px;
+		font-weight: 600;
+		cursor: pointer;
+		border-radius: 4px;
+		transition:
+			background 0.18s ease,
+			transform 0.1s ease;
+	}
+
+	.download-btn:hover {
+		background: var(--sidebar-hover);
+	}
+
+	.download-btn:active {
+		transform: scale(0.97);
+	}
+
+	.import-hint {
+		font-size: 12px;
+		color: var(--ok);
+		background: var(--ok-soft);
+		padding: 6px 10px;
+		border-radius: 3px;
+	}
+
+	.import-help {
+		font-size: 12px;
+		color: var(--muted);
+	}
+
+	.import-help summary {
+		cursor: pointer;
+		color: var(--text);
+		font-weight: 500;
+	}
+
+	.import-help ul {
+		margin: 8px 0 0;
+		padding-left: 18px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
 	}
 
 	.panel {
@@ -361,32 +568,56 @@
 		position: absolute;
 		left: 4px;
 		right: 4px;
-		padding: 6px 8px 5px 12px;
+		padding: 4px 6px 4px 10px;
 		overflow: hidden;
 		font-size: 12px;
 		color: #111b2f;
 		border: 1px solid rgba(17, 27, 47, 0.2);
 		border-radius: 3px;
+		min-width: 0;
 	}
 
 	.block strong {
-		font-size: 13px;
+		font-size: 12.5px;
 		font-weight: bold;
 		display: block;
 		color: #111b2f;
 		line-height: 1.15;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.block p {
-		margin: 3px 0 0;
-		font-size: 12px;
+		margin: 1px 0 0;
+		font-size: 11.5px;
 		color: #111b2f;
 		line-height: 1.2;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.block .muted {
 		color: #3a4150;
+		font-size: 11px;
+	}
+
+	.block.short {
+		padding: 3px 6px 3px 10px;
+	}
+
+	.block.short strong {
 		font-size: 11.5px;
+	}
+
+	.block.short p {
+		font-size: 10.5px;
+		margin-top: 0;
+	}
+
+	.block.short .muted {
+		display: none;
 	}
 
 	.accent {
@@ -425,20 +656,45 @@
 			grid-template-columns: 44px repeat(5, minmax(0, 1fr));
 		}
 
+		.block {
+			padding: 4px 4px 4px 8px;
+		}
+
 		.block strong {
-			font-size: 12px;
+			font-size: 11.5px;
 		}
 
 		.block p {
-			font-size: 11px;
+			font-size: 10.5px;
 		}
 
 		.block .muted {
-			font-size: 10.5px;
+			font-size: 10px;
 		}
 	}
 
 	@media (max-width: 700px) {
+		.toolbar {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 8px;
+		}
+
+		.calendar {
+			padding: 10px 8px 12px;
+			overflow-x: auto;
+		}
+
+		.cal-grid {
+			min-width: 520px;
+		}
+
+		.block .muted {
+			display: none;
+		}
+	}
+
+	@media (max-width: 480px) {
 		.calendar {
 			display: none;
 		}

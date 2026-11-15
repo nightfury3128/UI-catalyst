@@ -6,6 +6,7 @@
 	import Sidebar from '#lib/components/Sidebar.svelte';
 	import TopBar from '#lib/components/TopBar.svelte';
 	import { hydrateFromStorage } from '#lib/stores/enrollment.svelte.js';
+	import { hydratePins } from '#lib/stores/pins.svelte.js';
 	import { auth } from '#lib/stores/user.svelte.js';
 	import { setTheme, theme } from '#lib/theme.js';
 	import '../app.css';
@@ -23,6 +24,7 @@
 		}
 		if (auth.username) {
 			hydrateFromStorage();
+			hydratePins();
 		}
 	});
 </script>
@@ -50,7 +52,7 @@
 	}
 
 	.main {
-		margin-left: 200px;
+		margin-left: 232px;
 	}
 
 	.content {

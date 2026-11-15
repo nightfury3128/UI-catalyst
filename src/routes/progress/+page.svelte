@@ -1,4 +1,5 @@
 <script>
+	import GraduationTimeline from '#lib/components/GraduationTimeline.svelte';
 	import { curriculum, degreePlan, progress, student } from '#lib/data/student.svelte.js';
 	import { projectGraduation } from '#lib/data/progression.js';
 	import { CURRENT_TERM_ID, enrollment } from '#lib/stores/enrollment.svelte.js';
@@ -109,6 +110,8 @@
 	</div>
 </section>
 
+<GraduationTimeline />
+
 <div class="audit-head">
 	<h2>Degree audit</h2>
 	<span>Last updated {degree.lastUpdated}</span>
@@ -204,24 +207,6 @@
 		</section>
 	</aside>
 </div>
-
-<section class="card finishing">
-	<h3>Finishing this semester</h3>
-	<p class="muted">
-		These {headline.remainingCredits} credits fulfill your remaining major requirements.
-	</p>
-	<div class="courses">
-		{#each finishing as course}
-			<div class="course">
-				<div>
-					<strong>{course.code}</strong>
-					<p class="muted">{course.name}</p>
-				</div>
-				<span class="chip">{course.credits} credits</span>
-			</div>
-		{/each}
-	</div>
-</section>
 
 <p class="disclaimer">
 	Degree audit is a planning guide. Your advisor confirms final degree eligibility.
@@ -513,41 +498,6 @@
 		font-size: 13px;
 	}
 
-	.finishing {
-		margin-top: 16px;
-	}
-
-	.finishing h3 {
-		font-size: 16px;
-	}
-
-	.courses {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 12px;
-		margin-top: 14px;
-	}
-
-	.course {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		gap: 10px;
-		padding: 12px;
-		border: 1px solid var(--line);
-	}
-
-	.course strong {
-		font-size: 13px;
-	}
-
-	.chip {
-		background: var(--chip);
-		padding: 3px 8px;
-		font-size: 12px;
-		white-space: nowrap;
-	}
-
 	.disclaimer {
 		margin-top: 18px;
 		color: var(--muted);
@@ -560,10 +510,6 @@
 		}
 
 		.grid {
-			grid-template-columns: 1fr;
-		}
-
-		.courses {
 			grid-template-columns: 1fr;
 		}
 	}

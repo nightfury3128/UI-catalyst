@@ -15,6 +15,26 @@
 	let subject = $state('ALL');
 	let expandedCode = $state(/** @type {string | null} */ (null));
 	let showFilters = $state(false);
+	let enrollMessage = $state(/** @type {{ kind: 'error' | 'success', text: string } | null} */ (null));
+	/** @type {ReturnType<typeof setTimeout> | null} */
+	let enrollMessageTimer = null;
+
+	/**
+	 * @param {'error' | 'success'} kind
+	 * @param {string} text
+	 */
+	function flashMessage(kind, text) {
+		enrollMessage = { kind, text };
+		if (enrollMessageTimer) clearTimeout(enrollMessageTimer);
+		enrollMessageTimer = setTimeout(() => {
+			enrollMessage = null;
+		}, 6000);
+	}
+
+	function clearMessage() {
+		enrollMessage = null;
+		if (enrollMessageTimer) clearTimeout(enrollMessageTimer);
+	}
 
 	const emptyDays = () => ({
 		Mon: false,
@@ -147,6 +167,35 @@
 			start: toMinutes12(stripped(startRaw), startMeridiem),
 			end: toMinutes12(stripped(endRaw), endMeridiem)
 		};
+	}
+
+	/**
+	 * @param {{ days: string, time: string, code: string }} candidate
+	 * @returns {{ course: any, sharedDays: string[] } | null}
+	 */
+	function findConflict(candidate) {
+		const candTime = parseCourseTime(candidate.time);
+		if (!candTime) return null;
+		const candDays = parseDays(candidate.days);
+		if (candDays.size === 0) return null;
+
+		const existing = [
+			...(enrollmentState.enrolledByTerm[currentTermId] ?? []),
+			...enrollmentState.cart
+		];
+
+		for (const other of existing) {
+			if (other.code === candidate.code) continue;
+			const otherTime = parseCourseTime(other.time);
+			if (!otherTime) continue;
+			const otherDays = parseDays(other.days);
+			const shared = [...candDays].filter((d) => otherDays.has(d));
+			if (shared.length === 0) continue;
+			if (candTime.start < otherTime.end && otherTime.start < candTime.end) {
+				return { course: other, sharedDays: shared };
+			}
+		}
+		return null;
 	}
 
 	const activeFilterCount = $derived(
@@ -295,7 +344,16 @@
 
 	/** @param {(typeof availableCourses)[number]} course */
 	function addToCart(course) {
+		const conflict = findConflict(course);
+		if (conflict) {
+			flashMessage(
+				'error',
+				`Time conflict: ${course.code} (${course.days} · ${course.time}) overlaps with ${conflict.course.code} (${conflict.course.days} · ${conflict.course.time}) on ${conflict.sharedDays.join(', ')}.`
+			);
+			return;
+		}
 		storeAddToCart(course);
+		flashMessage('success', `${course.code} added to your cart.`);
 	}
 
 	/** @param {string} code */
@@ -305,6 +363,14 @@
 
 	/** @param {(typeof availableCourses)[number]} course */
 	function enrollNow(course) {
+		const conflict = findConflict(course);
+		if (conflict) {
+			flashMessage(
+				'error',
+				`Can't enroll: ${course.code} (${course.days} · ${course.time}) conflicts with ${conflict.course.code} (${conflict.course.days} · ${conflict.course.time}) on ${conflict.sharedDays.join(', ')}.`
+			);
+			return;
+		}
 		const newRow = {
 			code: course.code,
 			section: '001',
@@ -318,6 +384,7 @@
 			location: course.location
 		};
 		storeEnrollIn(currentTermId, newRow);
+		flashMessage('success', `Enrolled in ${course.code} — ${course.name}.`);
 	}
 
 	function printSchedule() {
@@ -402,6 +469,7 @@
 					<tr>
 						<th>Class</th>
 						<th>Schedule</th>
+						<th>Professor</th>
 						<th>Credits</th>
 						<th>Status</th>
 						<th class="actions-col">Actions</th>
@@ -418,6 +486,7 @@
 								{course.days} · {course.time}
 								<div>{course.location}</div>
 							</td>
+							<td>{course.instructor}</td>
 							<td>{course.credits.toFixed(2)}</td>
 							<td><span class="badge ok">{course.status}</span></td>
 							<td class="actions-col">
@@ -440,7 +509,7 @@
 						</tr>
 						{#if expandedCode === course.code}
 							<tr class="detail-row">
-								<td colspan="5">
+								<td colspan="6">
 									<div class="detail">
 										<div>
 											<span class="label">Fulfills</span>
@@ -475,6 +544,21 @@
 	<section class="find">
 		<h2>Find your next class</h2>
 		<p class="muted">Browse courses and add them to your enrollment cart.</p>
+
+		{#if enrollMessage}
+			<div
+				class="enroll-alert {enrollMessage.kind}"
+				role={enrollMessage.kind === 'error' ? 'alert' : 'status'}
+			>
+				<span class="icon-sym" aria-hidden="true">
+					{enrollMessage.kind === 'error' ? '!' : '✓'}
+				</span>
+				<p>{enrollMessage.text}</p>
+				<button type="button" class="dismiss" onclick={clearMessage} aria-label="Dismiss">
+					×
+				</button>
+			</div>
+		{/if}
 
 		{#if cart.length > 0}
 			<div class="cart" aria-label="Enrollment cart">
@@ -779,6 +863,10 @@
 						<p class="muted">
 							{course.days} · {course.time} • {course.location} • {course.credits} credits
 						</p>
+						<p class="instructor-line">
+							<span class="label-inline">Professor:</span>
+							<strong>{course.instructor}</strong>
+						</p>
 						{#if course.fulfills}
 							<p class="muted small">Fulfills: {course.fulfills}</p>
 						{/if}
@@ -893,6 +981,17 @@
 	.muted.small {
 		font-size: 11px;
 		margin-top: 4px;
+	}
+
+	.instructor-line {
+		margin-top: 6px;
+		font-size: 12.5px;
+		color: var(--text);
+	}
+
+	.instructor-line .label-inline {
+		color: var(--muted);
+		margin-right: 4px;
 	}
 
 	.muted-inline {
@@ -1094,6 +1193,64 @@
 	.find p.muted {
 		margin-top: 4px;
 		margin-bottom: 14px;
+	}
+
+	.enroll-alert {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 10px 14px;
+		margin-bottom: 12px;
+		border: 1px solid var(--line);
+		background: var(--surface);
+		font-size: 13px;
+	}
+
+	.enroll-alert.error {
+		background: var(--warn-soft);
+		border-color: var(--warn);
+		color: var(--warn);
+	}
+
+	.enroll-alert.success {
+		background: var(--ok-soft);
+		border-color: var(--ok);
+		color: var(--ok);
+	}
+
+	.enroll-alert p {
+		flex: 1;
+		margin: 0;
+		line-height: 1.4;
+	}
+
+	.enroll-alert .icon-sym {
+		display: inline-grid;
+		place-items: center;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		font-weight: bold;
+		font-size: 12px;
+		background: currentColor;
+		color: var(--surface);
+		flex-shrink: 0;
+		margin-top: 1px;
+	}
+
+	.enroll-alert .dismiss {
+		background: transparent;
+		border: 0;
+		color: inherit;
+		font-size: 18px;
+		line-height: 1;
+		padding: 2px 6px;
+		cursor: pointer;
+		opacity: 0.7;
+	}
+
+	.enroll-alert .dismiss:hover {
+		opacity: 1;
 	}
 
 	.cart {
