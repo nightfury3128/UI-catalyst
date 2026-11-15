@@ -141,7 +141,19 @@
 				</svg>
 				Add to calendar
 			</button>
-			<a class="manage-link" href="/classes">Manage classes →</a>
+			<a class="manage-btn" href="/classes" role="button">
+				Manage classes
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<path
+						d="M5 12h14M13 6l6 6-6 6"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/>
+				</svg>
+			</a>
 		</div>
 	</div>
 
@@ -300,10 +312,41 @@
 		gap: 14px;
 	}
 
-	.manage-link {
+	.manage-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 7px 14px;
 		font-size: 13px;
-		color: var(--text);
-		text-decoration: underline;
+		font-weight: 600;
+		background: var(--sidebar);
+		color: #ffffff;
+		border: 1px solid var(--sidebar);
+		border-radius: 4px;
+		cursor: pointer;
+		transition:
+			background 0.18s ease,
+			transform 0.12s ease,
+			box-shadow 0.18s ease;
+	}
+
+	.manage-btn svg {
+		width: 14px;
+		height: 14px;
+		transition: transform 0.18s ease;
+	}
+
+	.manage-btn:hover {
+		background: var(--sidebar-hover);
+		box-shadow: 0 2px 8px color-mix(in srgb, var(--sidebar) 30%, transparent);
+	}
+
+	.manage-btn:hover svg {
+		transform: translateX(2px);
+	}
+
+	.manage-btn:active {
+		transform: scale(0.97);
 	}
 
 	.cal-btn {

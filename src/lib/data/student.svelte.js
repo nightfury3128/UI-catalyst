@@ -73,66 +73,66 @@ const collegeByCode = { ECON1001: 'Arts & Sciences', MUSC1001: 'CCM' };
 /** @type {Record<string, string>} */
 const instructorByCode = {
 	// Computer Science
-	CS1100: 'Lara Croft',
-	CS1021C: 'Aloy',
-	CS2011: 'Peter Parker',
-	CS2023: 'Hershel Layton',
-	CS2028C: 'Faith Connors',
-	CS2071: 'Jesse Faden',
-	CS3003: 'Agent 47',
-	CS4033: 'Isaac Clarke',
-	CS4065: 'Mary Jane Watson',
-	CS4071: 'Delsin Rowe',
-	CS4092: 'Samus Aran',
-	CS5001: 'Commander Shepard',
-	CS5002: 'Phoenix Wright',
-	CS5124: 'Gordon Freeman',
-	CS5155: 'Alyx Vance',
-	CS5165: 'Ezio Auditore',
-	CS5167: 'Faith Connors',
-	CS5170: 'Agent 47',
-	CS5180: 'Booker DeWitt',
+	CS1100: 'Aloy',
+	CS1021C: 'Peter Parker',
+	CS2011: 'Clank',
+	CS2023: 'Miles Morales',
+	CS2028C: 'Bentley',
+	CS2071: 'Sylens',
+	CS3003: 'Altair Ibn-La’Ahad',
+	CS4033: 'Ratchet',
+	CS4065: 'Sam Porter Bridges',
+	CS4071: 'Mary Jane Watson',
+	CS4092: 'Nathan Drake',
+	CS5001: 'Kratos',
+	CS5002: 'Elena Fisher',
+	CS5124: 'Heartman',
+	CS5155: 'Yuri Watanabe',
+	CS5165: 'Fragile',
+	CS5167: 'Delsin Rowe',
+	CS5170: 'Connor',
+	CS5180: 'Markus',
 	// Electrical & Computer Engineering
-	EECE3093C: 'Chloe Price',
-	EECE4029: 'Clive Rosfield',
+	EECE3093C: 'Rivet',
+	EECE4029: 'Cidolfus Telamon',
 	// Math & Stats
-	MATH1061: 'Hershel Layton',
-	MATH1062: 'Noctis Lucis Caelum',
-	MATH2076: 'Yuna',
-	STAT2037: 'Jill Valentine',
+	MATH1061: 'Freya',
+	MATH1062: 'Yuna',
+	MATH2076: 'Mimir',
+	STAT2037: 'Deadman',
 	// Sciences
-	PHYS2001: 'Gordon Freeman',
-	PHYS2001L: 'Alyx Vance',
-	CHEM1040: 'Jesse Faden',
-	CHEM1040L: 'Heartman',
+	PHYS2001: 'Atreus',
+	PHYS2001L: 'Mama',
+	CHEM1040: 'Jodie Holmes',
+	CHEM1040L: 'Alfred',
 	// Humanities
-	ENGL1001: 'Max Payne',
-	ENGL2089: 'Ethan Mars',
-	ENGL4092: 'Mary Jane Watson',
-	HIST1001: 'Lee Everett',
-	HIST2001: 'Bayek of Siwa',
-	PHIL1001: 'Elizabeth Comstock',
-	PSYC1001: 'Max Caulfield',
-	SOCI1001: 'Niko Bellic',
-	COMM1071: 'Phoenix Wright',
-	ECON1001: 'John Marston',
+	ENGL1001: 'Ellie Williams',
+	ENGL2089: 'Madison Paige',
+	ENGL4092: 'Scott Shelby',
+	HIST1001: 'Bayek of Siwa',
+	HIST2001: 'Kassandra',
+	PHIL1001: 'Eivor Varinsdottir',
+	PSYC1001: 'Norman Jayden',
+	SOCI1001: 'Marlene',
+	COMM1071: 'Shaun Hastings',
+	ECON1001: 'Captain Qwark',
 	// Arts
-	ART1001: 'Delsin Rowe',
-	MUSC1001: 'Ellie Williams',
+	ART1001: 'Fetch',
+	MUSC1001: 'Dina',
 	// Engineering & Design
-	ENED1100: 'Isaac Clarke',
-	ENED1120: 'Faith Connors',
+	ENED1100: 'Sindri',
+	ENED1120: 'Brok',
 	// IT
-	IT2030C: 'Adam Jensen',
+	IT2030C: 'Rebecca Crane',
 	// Professional Development
-	PD1011: 'Phoenix Wright',
-	PD2050: 'Michael De Santa',
+	PD1011: 'Hank Anderson',
+	PD2050: 'Dion Lesage',
 	// Co-op (industry mentors)
-	COOP2011: 'Marcus Fenix',
-	COOP2012: 'Dom Santiago',
-	COOP3011: 'Nathan Drake',
-	COOP4011: 'Booker DeWitt',
-	COOP4012: 'Michael De Santa'
+	COOP2011: 'Sam Drake',
+	COOP2012: 'Chloe Frazer',
+	COOP3011: 'Nadine Ross',
+	COOP4011: 'Masako Adachi',
+	COOP4012: 'Clive Rosfield'
 };
 
 /**
@@ -348,7 +348,7 @@ export const profileDetails = {
 		mailingAddress: '2600 Clifton Ave, Cincinnati, OH 45220'
 	},
 	emergency: {
-		name: 'Dutch van der Linde',
+		name: 'Victor Sullivan',
 		relationship: 'Guardian',
 		phone: '(513) 555-0199'
 	},
@@ -398,8 +398,8 @@ export const progress = {
 		checks: ['GPA requirement met', 'Residency requirement met']
 	},
 	advisors: [
-		{ name: 'Max Hadley', role: 'CEAS Academic Advisor', email: 'hadleym1@ucmail.uc.edu' },
-		{ name: 'Dewey Clark', role: 'Co-op Advisor', email: 'clark2dw@ucmail.uc.edu' }
+		{ name: 'Lord Shimura', role: 'CEAS Academic Advisor', email: 'shimural@ucmail.uc.edu' },
+		{ name: 'Sensei Ishikawa', role: 'Co-op Advisor', email: 'ishikawas@ucmail.uc.edu' }
 	],
 	finishing: currentTermObj.courses.map(
 		(/** @type {any} */ c) => ({ code: c.code, name: c.title, credits: c.credits })

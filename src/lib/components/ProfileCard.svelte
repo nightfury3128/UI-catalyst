@@ -65,9 +65,19 @@
 		</a>
 	</div>
 
-	<button type="button" class="profile-btn" disabled title="Coming soon">
-		View my profile <span>Coming soon</span>
-	</button>
+	<a class="profile-btn" href="/profile">
+		View my profile
+		<svg viewBox="0 0 24 24" aria-hidden="true">
+			<path
+				d="M9 6l6 6-6 6"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+		</svg>
+	</a>
 </section>
 
 <style>
@@ -224,24 +234,42 @@
 	}
 
 	.profile-btn {
-		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
 		width: 100%;
 		text-align: center;
 		background: var(--sidebar);
-		color: white;
-		padding: 10px;
+		color: #ffffff;
+		padding: 11px;
 		border: 0;
-		opacity: 0.55;
-		cursor: not-allowed;
 		margin-top: auto;
+		font-size: 13px;
+		font-weight: 600;
+		border-radius: 4px;
+		transition:
+			background 0.18s ease,
+			transform 0.12s ease,
+			box-shadow 0.18s ease;
 	}
 
-	.profile-btn span {
-		display: block;
-		font-size: 10px;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		opacity: 0.85;
-		margin-top: 2px;
+	.profile-btn svg {
+		width: 14px;
+		height: 14px;
+		transition: transform 0.18s ease;
+	}
+
+	.profile-btn:hover {
+		background: var(--sidebar-hover);
+		box-shadow: 0 2px 8px color-mix(in srgb, var(--sidebar) 30%, transparent);
+	}
+
+	.profile-btn:hover svg {
+		transform: translateX(3px);
+	}
+
+	.profile-btn:active {
+		transform: scale(0.98);
 	}
 </style>
