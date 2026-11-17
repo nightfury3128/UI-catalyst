@@ -243,7 +243,9 @@ npm run build
 
 ## 7. Use of AI
 
-We used AI assistants to accelerate Figma-to-Svelte scaffolding, CSS layout iteration, and enrollment filter logic. **Strengths:** faster exploration of layout variants and boilerplate. **Limitations:** generated code needed manual passes for accessibility (labels, alerts), conflict-detection edge cases, and keeping mock data consistent across Home / Classes / Progress. Design decisions and critique framing remained human-led.
+We used AI assistants to accelerate Figma-to-Svelte scaffolding, CSS layout iteration, and enrollment filter logic and to help with documentation and grading our submission to get an idea how we did 
+**Strengths:** faster exploration of layout variants and boilerplate.
+**Limitations:** generated code needed manual passes for accessibility (labels, alerts), conflict-detection edge cases, and keeping mock data consistent across Home / Classes / Progress. Design decisions and critique framing remained human-led.
 
 ---
 
